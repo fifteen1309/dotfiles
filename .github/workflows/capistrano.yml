@@ -16,7 +16,7 @@ on:
         required: false
 
     secrets:
-      DEPLOY-SSH-KEY:
+      DEPLOY_SSH_KEY:
         description: "The private key to use"
         required: true
 
@@ -35,7 +35,7 @@ jobs:
         with:
           host: ${{inputs.host || secrets.HOST}}
           port: ${{inputs.port || secrets.PORT}}
-          private_key: ${{inputs.ssh-key || secrets.DEPLOY-SSH-KEY}}
+          private_key: ${{inputs.ssh-key || secrets.DEPLOY_SSH_KEY}}
 
       - name: Deploy server
         run: |
