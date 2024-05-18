@@ -1,5 +1,4 @@
 name: Capistrano Deploy
-description: Deploy to staging and production using Capistrano
 
 on:
   workflow_call:
@@ -7,18 +6,19 @@ on:
       stage:
         description: "The stage to deploy to"
         required: true
-        default: "staging"
+        type: string
       host:
         description: "The host to deploy to"
-        required: false
+        required: true
+        type: string
       port:
         description: "The port to use"
-        required: false
+        required: true
+        type: string
 
     secrets:
       DEPLOY_SSH_KEY:
-        description: "The private key to use"
-        required: true
+        required: false
 
 jobs:
   release:
