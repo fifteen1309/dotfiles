@@ -24,6 +24,11 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 999
+
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
