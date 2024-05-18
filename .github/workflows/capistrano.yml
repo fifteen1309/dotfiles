@@ -1,6 +1,25 @@
 name: Capistrano Deploy
 description: Deploy to staging and production using Capistrano
 
+on:
+  workflow_call:
+    inputs:
+      stage:
+        description: "The stage to deploy to"
+        required: true
+        default: "staging"
+      host:
+        description: "The host to deploy to"
+        required: false
+      port:
+        description: "The port to use"
+        required: false
+
+    secrets:
+      DEPLOY-SSH-KEY:
+        description: "The private key to use"
+        required: true
+
 inputs:
   stage:
     description: "The stage to deploy to"
@@ -29,7 +48,7 @@ run:
       with:
         host: ${{inputs.host || secrets.HOST}}
         port: ${{inputs.port || secrets.PORT}}
-        private_key: ${{inputs.key || secrets.KEY}}
+        private_key: ${{inputs.ssh-key || secrets.DEPLOY-SSH-KEY}}
 
     - name: Deploy server
       run: |
