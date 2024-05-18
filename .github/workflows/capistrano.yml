@@ -40,7 +40,7 @@ jobs:
         with:
           host: ${{inputs.host || secrets.HOST}}
           port: ${{inputs.port || secrets.PORT}}
-          private_key: ${{inputs.ssh-key || secrets.DEPLOY_SSH_KEY}}
+          private_key: ${{ secrets.DEPLOY_SSH_KEY || inputs.ssh-key }}
 
       - name: Deploy server
         run: |
