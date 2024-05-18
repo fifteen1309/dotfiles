@@ -1,0 +1,36 @@
+name: Capistrano Deploy
+description: Deploy to staging and production using Capistrano
+
+inputs:
+  stage:
+    description: "The stage to deploy to"
+    required: true
+  host:
+    description: "The host to deploy to"
+    required: false
+  port:
+    description: "The port to use"
+    required: false
+  key:
+    description: "The private key to use"
+    required: true
+
+run:
+  using: "composite"
+  steps:
+    - name: Set up ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.3"
+        bundler-cache: true
+
+    - name: Setup ssh
+      uses: MrSquaare/ssh-setup-action@v3
+      with:
+        host: ${{inputs.host || secrets.HOST}}
+        port: ${{inputs.port || secrets.PORT}}
+        private_key: ${{inputs.key || secrets.KEY}}
+
+    - name: Deploy server
+      run: |
+        bundler exec cap ${{inputs.stage}} deploy
