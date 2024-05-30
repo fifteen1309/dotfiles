@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "npm run format:write && npm run package",
-    "package": "ncc build src/index.ts",
+    "package": "ncc build src/index.js --license licenses.txt",
     "test": "npm test",
     "format:write": "prettier --write **/*.ts",
     "format:check": "prettier --check **/*.ts"
