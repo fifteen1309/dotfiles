@@ -29210,8 +29210,11 @@ const main = () => {
             core_1.default.setOutput('timestamp', (_e = payload.head_commit) === null || _e === void 0 ? void 0 : _e.timestamp);
             core_1.default.setOutput('url', (_f = payload.head_commit) === null || _f === void 0 ? void 0 : _f.url);
             console.log('The event payload : ', JSON.stringify(payload));
+            return;
         }
-        throw new Error('Commit fail');
+        else {
+            throw Error('Commit fail');
+        }
     }
     catch (error) {
         core_1.default.setFailed(error.message);
