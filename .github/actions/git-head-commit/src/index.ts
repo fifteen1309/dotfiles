@@ -1,9 +1,11 @@
-import core from '@actions/core'
-import github from '@actions/github'
+import * as core from '@actions/core'
+import * as github from '@actions/github'
 
 const main = () => {
   try {
-    const payload = github.context.payload
+    console.log({ github })
+
+    const payload = github.context?.payload
     console.log({ payload })
 
     if (payload) {

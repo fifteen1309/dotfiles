@@ -29193,23 +29193,44 @@ function wrappy (fn, cb) {
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(2186));
-const github_1 = __importDefault(__nccwpck_require__(5438));
+const core = __importStar(__nccwpck_require__(2186));
+const github = __importStar(__nccwpck_require__(5438));
 const main = () => {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e, _f, _g;
     try {
-        const payload = github_1.default.context.payload;
+        console.log({ github });
+        const payload = (_a = github.context) === null || _a === void 0 ? void 0 : _a.payload;
         console.log({ payload });
         if (payload) {
-            core_1.default.setOutput('author_email', (_b = (_a = payload.head_commit) === null || _a === void 0 ? void 0 : _a.author) === null || _b === void 0 ? void 0 : _b.email);
-            core_1.default.setOutput('commit_id', (_c = payload.head_commit) === null || _c === void 0 ? void 0 : _c.id);
-            core_1.default.setOutput('message', (_d = payload.head_commit) === null || _d === void 0 ? void 0 : _d.message);
-            core_1.default.setOutput('timestamp', (_e = payload.head_commit) === null || _e === void 0 ? void 0 : _e.timestamp);
-            core_1.default.setOutput('url', (_f = payload.head_commit) === null || _f === void 0 ? void 0 : _f.url);
+            core.setOutput('author_email', (_c = (_b = payload.head_commit) === null || _b === void 0 ? void 0 : _b.author) === null || _c === void 0 ? void 0 : _c.email);
+            core.setOutput('commit_id', (_d = payload.head_commit) === null || _d === void 0 ? void 0 : _d.id);
+            core.setOutput('message', (_e = payload.head_commit) === null || _e === void 0 ? void 0 : _e.message);
+            core.setOutput('timestamp', (_f = payload.head_commit) === null || _f === void 0 ? void 0 : _f.timestamp);
+            core.setOutput('url', (_g = payload.head_commit) === null || _g === void 0 ? void 0 : _g.url);
             console.log('The event payload : ', JSON.stringify(payload));
             return;
         }
@@ -29219,7 +29240,7 @@ const main = () => {
     }
     catch (error) {
         console.log(error);
-        core_1.default.setFailed(error.message);
+        core.setFailed(error.message);
     }
 };
 main();
