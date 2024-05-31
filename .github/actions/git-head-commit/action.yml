@@ -1,0 +1,17 @@
+name: git-head-commit
+description: Get git head commit information
+outputs:
+  author_email:
+    description: Author of git commit
+  commit_id:
+    description: Commit's id
+  message:
+    description: Commit's message
+  timestamp:
+    description: Commit's timestamp
+  url:
+    description: Commit's url
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
