@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "npm run format:write && npm run package",
-    "package": "ncc build src/index.ts",
+    "package": "ncc build src/index.ts --license licenses.txt",
     "test": "npm test",
     "format:write": "prettier --write **/*.ts",
     "format:check": "prettier --check **/*.ts"
@@ -21,7 +21,7 @@
   "author": "fifteen1309",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.12.13",
     "@vercel/ncc": "^0.38.1",
     "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
