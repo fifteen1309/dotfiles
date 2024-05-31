@@ -11,9 +11,10 @@ const main = () => {
       core.setOutput('timestamp', payload.head_commit?.timestamp)
       core.setOutput('url', payload.head_commit?.url)
       console.log('The event payload : ', JSON.stringify(payload))
+      return
+    } else {
+      throw Error('Commit fail')
     }
-
-    throw new Error('Commit fail')
   } catch (error: any) {
     core.setFailed(error.message)
   }
