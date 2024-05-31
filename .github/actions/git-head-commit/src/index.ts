@@ -4,6 +4,8 @@ import github from '@actions/github'
 const main = () => {
   try {
     const payload = github.context.payload
+    console.log({ payload })
+
     if (payload) {
       core.setOutput('author_email', payload.head_commit?.author?.email)
       core.setOutput('commit_id', payload.head_commit?.id)
@@ -16,8 +18,8 @@ const main = () => {
       throw Error('Commit fail')
     }
   } catch (error: any) {
-    console.log(error);
-    
+    console.log(error)
+
     core.setFailed(error.message)
   }
 }

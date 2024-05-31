@@ -29203,6 +29203,7 @@ const main = () => {
     var _a, _b, _c, _d, _e, _f;
     try {
         const payload = github_1.default.context.payload;
+        console.log({ payload });
         if (payload) {
             core_1.default.setOutput('author_email', (_b = (_a = payload.head_commit) === null || _a === void 0 ? void 0 : _a.author) === null || _b === void 0 ? void 0 : _b.email);
             core_1.default.setOutput('commit_id', (_c = payload.head_commit) === null || _c === void 0 ? void 0 : _c.id);
@@ -29217,6 +29218,7 @@ const main = () => {
         }
     }
     catch (error) {
+        console.log(error);
         core_1.default.setFailed(error.message);
     }
 };
