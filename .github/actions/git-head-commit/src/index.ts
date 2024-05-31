@@ -16,6 +16,8 @@ const main = () => {
       throw Error('Commit fail')
     }
   } catch (error: any) {
+    console.log(error);
+    
     core.setFailed(error.message)
   }
 }
