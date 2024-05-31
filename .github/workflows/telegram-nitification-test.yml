@@ -1,0 +1,23 @@
+on: [push]
+
+jobs:
+  telegram-notification:
+    runs-on: ubuntu-latest
+    name: Notification to telegram group
+    steps:
+      - name: Git head commit
+        id: git-head-commit
+        uses: fifteen1309/dotfiles/.github/actions/git-head-commit@main
+
+      - name: Telegram notification
+        id: telegram-notification
+        uses: fifteen1309/dotfiles/.github/actions/telegram-notification@main
+        with:
+          author_commit: ${{steps.git-head-commit.outputs.author_email}}
+          commit_id: ${{steps.git-head-commit.outputs.commit_id}}
+          message: ${{steps.git-head-commit.outputs.message}}
+          timestamp: ${{steps.git-head-commit.outputs.timestamp}}
+          url: ${{steps.git-head-commit.outputs.url}}
+          bot_token:
+          group_id: ${{steps.git-head-commit.outputs.author_email}}
+          previoust_step_status: ${{steps.git-head-commit.outputs.author_email}}
