@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Telegram notification
         id: telegram-notification
-        uses: fifteen1309/dotfiles/.github/actions/telegram-notification@main
+        uses: fifteen1309/dotfiles/.github/actions/telegram-messages@main
         with:
           author_commit: ${{needs.git-head-commit.outputs.author_email}}
           commit_id: ${{needs.git-head-commit.outputs.commit_id}}
