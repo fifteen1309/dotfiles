@@ -1,0 +1,37 @@
+{
+  "name": "@fifteen/typescript-template",
+  "version": "1.0.0",
+  "description": "Get github commit information",
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fifteen1309/typescript-template.git"
+  },
+  "keywords": [
+    "fifteen",
+    "fifteen1309"
+  ],
+  "scripts": {
+    "build": "npm run format:write && npm run package",
+    "package": "ncc build src/index.ts",
+    "test": "npm test",
+    "format:write": "prettier --write **/*.ts",
+    "format:check": "prettier --check **/*.ts"
+  },
+  "author": "fifteen1309",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^9.2.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0",
+    "axios": "^1.7.2"
+  }
+}

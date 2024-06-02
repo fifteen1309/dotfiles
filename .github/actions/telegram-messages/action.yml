@@ -1,0 +1,32 @@
+name: telegram-notification
+description: Notification to telegram group
+
+inputs:
+  author_commit:
+    description: Author of git commit
+    required: true
+  commit_id:
+    description: Commit's id
+    required: true
+  message:
+    description: Commit's message
+    required: true
+  timestamp:
+    description: Commit's timestamp
+    required: true
+  url:
+    description: Commit's url
+    required: true
+  bot_token:
+    description: Telegram bot's token
+    required: true
+  group_id:
+    description: Telegram group's id
+    required: true
+  previous_step_result:
+    description: Previous step result
+    required: true
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
