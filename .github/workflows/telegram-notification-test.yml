@@ -6,7 +6,7 @@ jobs:
     name: Get git head commit
     steps:
       - name: Git head commit
-        uses: uses: fifteen1309/dotfiles/.github/actions/git-head-commit@main
+        uses: fifteen1309/dotfiles/.github/actions/git-head-commit@main
   telegram-notification:
     runs-on: ubuntu-latest
     name: Notification to telegram group
