@@ -1,23 +1,27 @@
 on: [push]
 
 jobs:
+  git-head-commit:
+    runs-on: ubuntu-latest
+    name: Get git head commit
+    steps:
+      - name: Git head commit
+        uses: uses: fifteen1309/dotfiles/.github/actions/git-head-commit@main
   telegram-notification:
     runs-on: ubuntu-latest
     name: Notification to telegram group
+    if: ${{ always() }}
+    needs: git-head-commit
     steps:
-      - name: Git head commit
-        id: git-head-commit
-        uses: fifteen1309/dotfiles/.github/actions/git-head-commit@main
-
       - name: Telegram notification
         id: telegram-notification
         uses: fifteen1309/dotfiles/.github/actions/telegram-notification@main
         with:
-          author_commit: ${{steps.git-head-commit.outputs.author_email}}
-          commit_id: ${{steps.git-head-commit.outputs.commit_id}}
-          message: ${{steps.git-head-commit.outputs.message}}
-          timestamp: ${{steps.git-head-commit.outputs.timestamp}}
-          url: ${{steps.git-head-commit.outputs.url}}
-          bot_token:
-          group_id: ${{steps.git-head-commit.outputs.author_email}}
-          previoust_step_status: ${{steps.git-head-commit.outputs.author_email}}
+          author_commit: ${{needs.git-head-commit.outputs.author_email}}
+          commit_id: ${{needs.git-head-commit.outputs.commit_id}}
+          message: ${{needs.git-head-commit.outputs.message}}
+          timestamp: ${{needs.git-head-commit.outputs.timestamp}}
+          url: ${{needs.git-head-commit.outputs.url}}
+          bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
+          group_id: -4062792613
+          previoust_step_status: success
