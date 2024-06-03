@@ -28460,7 +28460,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const axios_1 = __importDefault(__nccwpck_require__(8757));
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const author = core.getInput('author_email');
+        const author = core.getInput('author_commit');
         const commitId = core.getInput('commit_id');
         const message = core.getInput('message');
         const timestamp = core.getInput('timestamp');
@@ -28468,9 +28468,10 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         const botToken = core.getInput('bot_token');
         const groupId = core.getInput('group_id');
         const previousStepResult = core.getInput('previous_step_result');
+        console.log(previousStepResult);
         const notiMessage = previousStepResult === 'success'
-            ? `✅ PASSING build success \n▪️ Status: ${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`
-            : `❌ PASSING build failed \n▪️ Status: ${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`;
+            ? `✅ PASSING build success \n▪️ Status: \n${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`
+            : `❌ PASSING build failed \n▪️ Status: \n${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`;
         yield axios_1.default.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             chat_id: groupId,
             text: notiMessage,
