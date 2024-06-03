@@ -1,40 +1,47 @@
 on: [push]
 
 jobs:
-  git-head-commit:
+  gitcommit:
     runs-on: ubuntu-latest
     name: Get git head commit
+    outputs:
+      author_email: ${{steps.head-commit.outputs.author_email}}
+      commit_id: ${{steps.head-commit.outputs.commit_id}}
+      message: ${{steps.head-commit.outputs.message}}
+      timestamp: ${{steps.head-commit.outputs.timestamp}}
+      url: ${{steps.head-commit.outputs.url}}
     steps:
       - name: Git head commit
+        id: head-commit
         uses: fifteen1309/dotfiles/.github/actions/git-head-commit@main
   telegram-notification:
     runs-on: ubuntu-latest
     name: Notification to telegram group
     if: ${{ always() }}
-    needs: git-head-commit
+    needs: gitcommit
     steps:
-      - if: ${{needs.git-head-commit.result == 'success'}}
+      - if: ${{needs.gitcommit.result == 'success'}}
         name: Telegram notification
         uses: fifteen1309/dotfiles/.github/actions/telegram-messages@main
         with:
-          author_commit: ${{needs.git-head-commit.outputs.author_email}}
-          commit_id: ${{needs.git-head-commit.outputs.commit_id}}
-          message: ${{needs.git-head-commit.outputs.message}}
-          timestamp: ${{needs.git-head-commit.outputs.timestamp}}
-          url: ${{needs.git-head-commit.outputs.url}}
+          author_commit: ${{needs.gitcommit.outputs.author_email}}
+          commit_id: ${{needs.gitcommit.outputs.commit_id}}
+          message: ${{needs.gitcommit.outputs.message}}
+          timestamp: ${{needs.gitcommit.outputs.timestamp}}
+          url: ${{needs.gitcommit.outputs.url}}
           bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
           group_id: -4062792613
           previoust_step_status: success
 
-      - if: ${{needs.git-head-commit.result != 'success'}}
+      - if: ${{needs.gitcommit.result != 'success'}}
         name: Telegram notification
         uses: fifteen1309/dotfiles/.github/actions/telegram-messages@main
         with:
-          author_commit: ${{needs.git-head-commit.outputs.author_email}}
-          commit_id: ${{needs.git-head-commit.outputs.commit_id}}
-          message: ${{needs.git-head-commit.outputs.message}}
-          timestamp: ${{needs.git-head-commit.outputs.timestamp}}
-          url: ${{needs.git-head-commit.outputs.url}}
+          author_commit: ${{needs.gitcommit.outputs.author_email}}
+          commit_id: ${{needs.gitcommit.outputs.commit_id}}
+          message: ${{needs.gitcommit.outputs.message}}
+          timestamp: ${{needs.gitcommit.outputs.timestamp}}
+          url: ${{needs.gitcommit.outputs.url}}
           bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
           group_id: -4062792613
           previoust_step_status: error
