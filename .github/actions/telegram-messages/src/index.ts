@@ -16,8 +16,8 @@ const main = async () => {
 
     const notiMessage =
       previousStepResult === 'success'
-        ? `✅ PASSING build success \n▪️ Status: ${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`
-        : `❌ PASSING build failed \n▪️ Status: ${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`
+        ? `✅ PASSING build success \n▪️ Status: \n${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`
+        : `❌ PASSING build failed \n▪️ Status: \n${previousStepResult}\n▪️ Author\n${author}\n▪️ Build\n${commitId}\n▪️ API Endpoint\n${url}\n▪️ Changelog\n${message}\n▪️ Timestamp\n${new Date(timestamp)}`
     await axios.post(
       `https://api.telegram.org/bot${botToken}/sendMessage`,
       {

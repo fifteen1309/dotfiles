@@ -3,10 +3,7 @@ import * as github from '@actions/github'
 
 const main = () => {
   try {
-    console.log({ github })
-
     const payload = github.context?.payload
-    console.log({ payload })
 
     if (payload) {
       core.setOutput('author_email', payload.head_commit?.author?.email)
@@ -15,6 +12,8 @@ const main = () => {
       core.setOutput('timestamp', payload.head_commit?.timestamp)
       core.setOutput('url', payload.head_commit?.url)
       console.log('The event payload : ', JSON.stringify(payload))
+      console.log('Author: ', payload.head_commit?.author?.email)
+
       return
     } else {
       throw Error('Commit fail')
