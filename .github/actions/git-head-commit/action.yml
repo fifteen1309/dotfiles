@@ -13,5 +13,5 @@ outputs:
     description: Commit's url
 
 runs:
-  using: "node20"
-  main: "dist/index.js"
+  using: 'node20'
+  main: 'dist/index.js'

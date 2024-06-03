@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const main = async () => {
   try {
-    const author = core.getInput('author_email')
+    const author = core.getInput('author_commit')
     const commitId = core.getInput('commit_id')
     const message = core.getInput('message')
     const timestamp = core.getInput('timestamp')
@@ -11,6 +11,8 @@ const main = async () => {
     const botToken = core.getInput('bot_token')
     const groupId = core.getInput('group_id')
     const previousStepResult = core.getInput('previous_step_result')
+
+    console.log(previousStepResult)
 
     const notiMessage =
       previousStepResult === 'success'

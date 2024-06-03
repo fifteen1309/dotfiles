@@ -31,7 +31,7 @@ jobs:
           url: ${{needs.gitcommit.outputs.url}}
           bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
           group_id: -4062792613
-          previoust_step_status: success
+          previous_step_result: success
 
       - if: ${{needs.gitcommit.result != 'success'}}
         name: Telegram notification
@@ -44,4 +44,4 @@ jobs:
           url: ${{needs.gitcommit.outputs.url}}
           bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
           group_id: -4062792613
-          previoust_step_status: error
+          previous_step_result: error
