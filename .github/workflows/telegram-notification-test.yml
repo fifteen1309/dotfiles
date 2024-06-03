@@ -13,8 +13,8 @@ jobs:
     if: ${{ always() }}
     needs: git-head-commit
     steps:
-      - name: Telegram notification
-        id: telegram-notification
+      - if: ${{needs.git-head-commit.result == 'success'}}
+        name: Telegram notification
         uses: fifteen1309/dotfiles/.github/actions/telegram-messages@main
         with:
           author_commit: ${{needs.git-head-commit.outputs.author_email}}
@@ -25,3 +25,16 @@ jobs:
           bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
           group_id: -4062792613
           previoust_step_status: success
+
+      - if: ${{needs.git-head-commit.result != 'success'}}
+        name: Telegram notification
+        uses: fifteen1309/dotfiles/.github/actions/telegram-messages@main
+        with:
+          author_commit: ${{needs.git-head-commit.outputs.author_email}}
+          commit_id: ${{needs.git-head-commit.outputs.commit_id}}
+          message: ${{needs.git-head-commit.outputs.message}}
+          timestamp: ${{needs.git-head-commit.outputs.timestamp}}
+          url: ${{needs.git-head-commit.outputs.url}}
+          bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
+          group_id: -4062792613
+          previoust_step_status: error
