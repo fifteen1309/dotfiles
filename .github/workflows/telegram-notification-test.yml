@@ -1,4 +1,13 @@
-on: [push]
+on:
+  workflow_call:
+    secrets:
+      bot_token:
+        description: "The Telegram bot token"
+        required: true
+
+      group_id:
+        description: "The id of group which can received notification"
+        required: true
 
 jobs:
   gitcommit:
@@ -29,8 +38,8 @@ jobs:
           message: ${{needs.gitcommit.outputs.message}}
           timestamp: ${{needs.gitcommit.outputs.timestamp}}
           url: ${{needs.gitcommit.outputs.url}}
-          bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
-          group_id: -4062792613
+          bot_token: ${{secrets.bot_token}}
+          group_id: ${{secrets.group_id}}
           previous_step_result: success
 
       - if: ${{needs.gitcommit.result != 'success'}}
@@ -42,6 +51,6 @@ jobs:
           message: ${{needs.gitcommit.outputs.message}}
           timestamp: ${{needs.gitcommit.outputs.timestamp}}
           url: ${{needs.gitcommit.outputs.url}}
-          bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
-          group_id: -4062792613
+          bot_token: ${{secrets.bot_token}}
+          group_id: ${{secrets.group_id}}
           previous_step_result: error
