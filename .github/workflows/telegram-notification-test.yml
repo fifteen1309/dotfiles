@@ -1,5 +1,10 @@
 on:
   workflow_call:
+    inputs:
+      stage:
+        description: "The stage which deplyed"
+        required: true
+        type: string
     secrets:
       bot_token:
         description: "The Telegram bot token"
@@ -41,6 +46,7 @@ jobs:
           bot_token: ${{secrets.bot_token}}
           group_id: ${{secrets.group_id}}
           previous_step_result: success
+          stage: ${{inputs.stage}}
 
       - if: ${{needs.gitcommit.result != 'success'}}
         name: Telegram notification
@@ -54,3 +60,4 @@ jobs:
           bot_token: ${{secrets.bot_token}}
           group_id: ${{secrets.group_id}}
           previous_step_result: error
+          stage: ${{inputs.stage}}
