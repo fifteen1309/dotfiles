@@ -1,12 +1,12 @@
-# name: Test telegram notification
+name: Test telegram notification
 
-# on: [push]
+on: [push]
 
-# jobs:
-#   hello_world_job:
-#     uses: fifteen1309/dotfiles/.github/workflows/telegram-notification-test.yml@main
-#     with:
-#       stage: staging
-#     secrets:
-#       bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
-#       group_id: -4062792613
+jobs:
+  hello_world_job:
+    uses: fifteen1309/dotfiles/.github/workflows/telegram-notification-test.yml@main
+    with:
+      stage: staging
+    secrets:
+      bot_token: "6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI"
+      group_id: "-4062792613"
