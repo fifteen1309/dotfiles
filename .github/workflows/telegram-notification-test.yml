@@ -5,6 +5,10 @@ on:
         description: "The stage which deplyed"
         required: true
         type: string
+      project_name:
+        description: "Project name"
+        required: true
+        type: string
     secrets:
       bot_token:
         description: "The Telegram bot token"
@@ -47,6 +51,7 @@ jobs:
           group_id: ${{secrets.group_id}}
           previous_step_result: success
           stage: ${{inputs.stage}}
+          project_name: ${{inputs.project_name}}
 
       - if: ${{needs.gitcommit.result != 'success'}}
         name: Telegram notification
@@ -61,3 +66,4 @@ jobs:
           group_id: ${{secrets.group_id}}
           previous_step_result: error
           stage: ${{inputs.stage}}
+          project_name: ${{inputs.project_name}}
