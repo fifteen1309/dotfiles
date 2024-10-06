@@ -6,7 +6,11 @@ const main = () => {
     const payload = github.context?.payload
 
     if (payload) {
-      core.setOutput('author_email', payload.head_commit?.author?.email)
+      core.setOutput(
+        'author_email',
+        payload.head_commit?.author?.username ||
+          payload.head_commit?.author?.email
+      )
       core.setOutput('commit_id', payload.head_commit?.id)
       core.setOutput('message', payload.head_commit?.message)
       core.setOutput('timestamp', payload.head_commit?.timestamp)

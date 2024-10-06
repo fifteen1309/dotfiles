@@ -29220,17 +29220,18 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 const main = () => {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
     try {
         const payload = (_a = github.context) === null || _a === void 0 ? void 0 : _a.payload;
         if (payload) {
-            core.setOutput('author_email', (_c = (_b = payload.head_commit) === null || _b === void 0 ? void 0 : _b.author) === null || _c === void 0 ? void 0 : _c.email);
-            core.setOutput('commit_id', (_d = payload.head_commit) === null || _d === void 0 ? void 0 : _d.id);
-            core.setOutput('message', (_e = payload.head_commit) === null || _e === void 0 ? void 0 : _e.message);
-            core.setOutput('timestamp', (_f = payload.head_commit) === null || _f === void 0 ? void 0 : _f.timestamp);
-            core.setOutput('url', (_g = payload.head_commit) === null || _g === void 0 ? void 0 : _g.url);
+            core.setOutput('author_email', ((_c = (_b = payload.head_commit) === null || _b === void 0 ? void 0 : _b.author) === null || _c === void 0 ? void 0 : _c.username) ||
+                ((_e = (_d = payload.head_commit) === null || _d === void 0 ? void 0 : _d.author) === null || _e === void 0 ? void 0 : _e.email));
+            core.setOutput('commit_id', (_f = payload.head_commit) === null || _f === void 0 ? void 0 : _f.id);
+            core.setOutput('message', (_g = payload.head_commit) === null || _g === void 0 ? void 0 : _g.message);
+            core.setOutput('timestamp', (_h = payload.head_commit) === null || _h === void 0 ? void 0 : _h.timestamp);
+            core.setOutput('url', (_j = payload.head_commit) === null || _j === void 0 ? void 0 : _j.url);
             console.log('The event payload : ', JSON.stringify(payload));
-            console.log('Author: ', (_j = (_h = payload.head_commit) === null || _h === void 0 ? void 0 : _h.author) === null || _j === void 0 ? void 0 : _j.email);
+            console.log('Author: ', (_l = (_k = payload.head_commit) === null || _k === void 0 ? void 0 : _k.author) === null || _l === void 0 ? void 0 : _l.email);
             return;
         }
         else {
