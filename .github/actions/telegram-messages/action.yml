@@ -29,7 +29,7 @@ inputs:
   stage:
     description: Stage deployed
     required: true
-  projecet_name:
+  project_name:
     description: Name of project
     required: true
 
