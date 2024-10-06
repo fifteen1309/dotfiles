@@ -29,6 +29,9 @@ inputs:
   stage:
     description: Stage deployed
     required: true
+  projecet_name:
+    description: Name of project
+    required: true
 
 runs:
   using: 'node20'
