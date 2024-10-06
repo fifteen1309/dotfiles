@@ -1,15 +1,12 @@
+name: Test telegram notification
+
 on: [push]
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
-    steps:
-      - name: Hello world action step
-        id: hello
-        uses: fifteen1309/dotfiles/.github/actions/hello-world-javascript-action@main
-        with:
-          who-to-greet: "Mona the Octocat"
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+    uses: fifteen1309/dotfiles/.github/workflows/telegram-notification-test.yml@main
+    with:
+      stage: staging
+    secrets:
+      bot_token: 6791119128:AAHB92w5oqjEshgNmFxbw4nxfqq65-fGoLI
+      group_id: -4062792613

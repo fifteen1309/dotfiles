@@ -26,6 +26,9 @@ inputs:
   previous_step_result:
     description: Previous step result
     required: true
+  stage:
+    description: Stage deployed
+    required: true
 
 runs:
   using: 'node20'
