@@ -13,7 +13,7 @@ const main = async () => {
     const previousStepResult = core.getInput('previous_step_result')
     const stage = core.getInput('stage')
 
-    console.log(previousStepResult)
+    console.log(stage)
 
     const notiMessage =
       previousStepResult === 'success'
