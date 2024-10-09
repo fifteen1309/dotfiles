@@ -15,10 +15,6 @@ on:
         description: "The port to use"
         required: true
         type: string
-      runner:
-        description: "Runner type"
-        required: false
-        type: string
 
     secrets:
       DEPLOY_SSH_KEY:
@@ -26,7 +22,7 @@ on:
 
 jobs:
   release:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

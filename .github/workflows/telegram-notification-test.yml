@@ -9,10 +9,6 @@ on:
         description: "Project name"
         required: true
         type: string
-      runner:
-        description: "Runner type"
-        required: false
-        type: string
     secrets:
       bot_token:
         description: "The Telegram bot token"
@@ -24,7 +20,7 @@ on:
 
 jobs:
   gitcommit:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: Get git head commit
     outputs:
       author_email: ${{steps.head-commit.outputs.author_email}}
