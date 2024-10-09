@@ -24,7 +24,7 @@ on:
 
 jobs:
   gitcommit:
-    runs-on: ${{inputs.runner || 'ubuntu-latest'}}
+    runs-on: self-hosted
     name: Get git head commit
     outputs:
       author_email: ${{steps.head-commit.outputs.author_email}}
