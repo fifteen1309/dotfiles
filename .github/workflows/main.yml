@@ -1,12 +1,13 @@
-# name: Test telegram notification
+name: Test telegram notification
 
-# on: [push]
+on: [push]
 
-# jobs:
-#   hello_world_job:
-#     uses: fifteen1309/dotfiles/.github/workflows/telegram-notification-test.yml@main
-#     with:
-#       stage: staging
-#     secrets:
-#       bot_token:
-#       group_id:
+jobs:
+  capistrano:
+    uses: fifteen1309/dotfiles/.github/workflows/capistrano.yml@main
+    with:
+      stage: staging
+      runs_on: self-hosted
+    secrets:
+      bot_token:
+      group_id:
