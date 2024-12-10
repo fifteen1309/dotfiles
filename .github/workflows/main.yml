@@ -11,5 +11,5 @@ jobs:
       host: 12.21.212.12
       port: 22
     secrets:
-      bot_token:
-      group_id:
+      bot_token: "dasdasdasdasdasdasdasdasdas"
+      group_id: -2312312312312

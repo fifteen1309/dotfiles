@@ -2,7 +2,7 @@ on: [push]
 
 jobs:
   git-head-commit:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     name: Get git head commit information
     steps:
       - name: Git head commit
