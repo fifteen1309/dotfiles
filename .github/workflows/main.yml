@@ -8,6 +8,8 @@ jobs:
     with:
       stage: staging
       runs_on: self-hosted
+      host: 12.21.212.12
+      port: 22
     secrets:
       bot_token:
       group_id:
