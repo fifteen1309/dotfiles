@@ -9,6 +9,10 @@ on:
         description: "Project name"
         required: true
         type: string
+      runs_on:
+        description: "The machine githubaction will run on"
+        required: true
+        type: string
     secrets:
       bot_token:
         description: "The Telegram bot token"
@@ -20,7 +24,7 @@ on:
 
 jobs:
   gitcommit:
-    runs-on: ubuntu-latest
+    runs-on: ${{inputs.runs_on}}
     name: Get git head commit
     outputs:
       author_email: ${{steps.head-commit.outputs.author_email}}
@@ -33,7 +37,7 @@ jobs:
         id: head-commit
         uses: fifteen1309/dotfiles/.github/actions/git-head-commit@main
   telegram-notification:
-    runs-on: ubuntu-latest
+    runs-on: ${{inputs.runs_on}}
     name: Notification to telegram group
     if: ${{ always() }}
     needs: gitcommit
