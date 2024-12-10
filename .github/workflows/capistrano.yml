@@ -19,6 +19,7 @@ on:
         description: "The machine githubaction will run on"
         required: true
         type: string
+        default: ubuntu-latest
 
     secrets:
       DEPLOY_SSH_KEY:
